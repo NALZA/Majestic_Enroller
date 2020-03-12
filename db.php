@@ -8,6 +8,21 @@ class db
 
     function getStudents()
     {
+        $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query("SELECT * FROM `student` ORDER BY `enrollmentDate`,`lName`,`fName` DESC");
+        return ($result);
+    }
+
+    function deleteStudent($key)
+    {
+        $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $conn->query("DELETE FROM `student` WHERE `P_Key` = " . (int) $key);
     }
 
     function addStudent(
