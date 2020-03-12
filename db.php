@@ -16,6 +16,16 @@ class db
         return ($result);
     }
 
+    function getStudent($key)
+    {
+        $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query("SELECT * FROM `student` WHERE `P_Key` = " . (int) $key);
+        return ($result);
+    }
+
     function deleteStudent($key)
     {
         $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);

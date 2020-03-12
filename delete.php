@@ -12,7 +12,7 @@
     include 'db.php';
     $db = new db();
     $db->deleteStudent($_POST["key"]);
-    //echo "<script> window.history.back(); </script>";
+    echo "<script> window.location=\"summary.php\"; </script>";
     ?>
 </body>
 
