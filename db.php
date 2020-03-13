@@ -102,4 +102,14 @@ class db
         }
         $conn->query("UPDATE `student` SET `imgUrl`=\"" . $address . "\" WHERE P_Key = " .  (int) $key);
     }
+
+    function report()
+    {
+        $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $result = $conn->query("SELECT `currentSchoolYear`, COUNT(*) AS `num` FROM `student` GROUP BY `currentSchoolYear`");
+        return ($result);
+    }
 }

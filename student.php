@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Enrollment</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>

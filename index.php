@@ -3,35 +3,74 @@
 
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Enrollment</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <h1>Enroll A New Student</h1>
-    <div id="enroll-form">
+    <div class="content">
+        <h1>Enroll A New Student</h1>
         <form action="<?php if ($_POST) {
                             echo "updateStudent.php";
                         } else {
                             echo "newStudent.php";
                         } ?>" method="post">
-            <label>First Name: </label> <input type="text" id="fname" name="fname" value="" required><br>
-            <label>Last Name: </label> <input type="text" id="lname" name="lname" value="" required><br>
-            <label>Date of Birth: </label> <input type="date" id="dob" name="dateOfBirth" max="<?php echo date("Y/m/d") ?>" min="2000-01-01" value="" required><br>
-            <label>Enrolment Date: </label> <input type="date" id="enrollment" name="enrolmentDate" max="<?php echo date("Y/m/d") ?>" value="" required><br>
-            <label>Current School Year:</label> <input type="number" id="year" name="currentYear" value="7" min="7" max="12" value="" required><br>
-            <label>Home Phone: </label> <input type="tel" id="hphone" name="hPhone" placeholder="0498765432" value="" required><br><br>
-            <label>Mobile Phone: </label> <input type="tel" id="mphone" name="mPhone" placeholder="0498765432" value="" required><br><br>
-            <label>Email: </label> <input type="email" id="email" name="email" value="" required><br>
-            <label>1st Contact Name: </label> <input type="text" id="name1" name="contactName1" placeholder="Usually Parent" value="" required><br>
-            <label>1st Contact Phone:</label> <input type="tel" id="phone1" name="contactPhone1" placeholder="0498765432" value="" required><br><br>
-            <label>2nd Contact Name: </label><input type="text" id="name2" name="contactName2" value="" required><br>
-            <label>2nd Contact Phone: </label><input type="tel" id="phone2" name="contactPhone2" placeholder="0498765432" value="" required><br><br>
+            <table>
+                <tr>
+                    <td><label>First Name: </label></td>
+                    <td><input type="text" id="fname" name="fname" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Last Name: </label></td>
+                    <td><input type="text" id="lname" name="lname" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Date of Birth: </label></td>
+                    <td><input type="date" id="dob" name="dateOfBirth" max="<?php echo date("Y/m/d") ?>" min="2000-01-01" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Enrolment Date: </label></td>
+                    <td><input type="date" id="enrollment" name="enrolmentDate" max="<?php echo date("Y/m/d") ?>" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Current School Year:</label></td>
+                    <td> <input type="number" id="year" name="currentYear" value="7" min="7" max="12" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Home Phone: </label></td>
+                    <td> <input type="tel" id="hphone" name="hPhone" placeholder="0498765432" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Mobile Phone: </label></td>
+                    <td> <input type="tel" id="mphone" name="mPhone" placeholder="0498765432" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td> <input type="email" id="email" name="email" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>1st Contact Name: </label></td>
+                    <td> <input type="text" id="name1" name="contactName1" placeholder="Usually Parent" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>1st Contact Phone:</label></td>
+                    <td> <input type="tel" id="phone1" name="contactPhone1" placeholder="0498765432" value="" required></td>
+                </tr>
+                <tr>
+                    <td><label>2nd Contact Name: </label></td>
+                    <td><input type="text" id="name2" name="contactName2" value="" required></td>
+                </tr>
+                <td><label>2nd Contact Phone: </label></td>
+                <td><input type="tel" id="phone2" name="contactPhone2" placeholder="0498765432" value="" required></td>
+                </tr>
+            </table>
             <?php if ($_POST) {
                 echo "<input type=\"hidden\" type=\"number\" name=\"key\" value=" . $_POST["key"] . ">";
             } ?>
             <input type="submit">
+            <button class="right" onclick="window.location.href='summary.php'">View Summary</button>
         </form>
-        <button onclick="window.location.href='summary.php'">View Summary</button>
+
     </div>
     <?php include 'db.php';
     if ($_POST) {
