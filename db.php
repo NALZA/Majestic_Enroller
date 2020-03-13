@@ -63,4 +63,43 @@ class db
             print_r($e);
         }
     }
+
+    function updateStudent(
+        $fName,
+        $lName,
+        $dob,
+        $enrollmentDate,
+        $currentSchoolYear,
+        $homePhone,
+        $mobilePhone,
+        $email,
+        $contactName1,
+        $contactPhone1,
+        $contactName2,
+        $contactPhone2,
+        $key
+    ) {
+        try {
+            $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $stmt = $conn->prepare("UPDATE `student` SET `fName`=?,`lName`=?,`dob`=?,`enrollmentDate`=?,`currentSchoolYear`=?,`homePhone`=?,`mobilePhone`=?,`email`=?,`contactName1`=?,`contactPhone1`=? ,`contactName2`=?,`contactPhone2`=? WHERE P_Key =?");
+            $stmt->bind_param("ssssssissisii", $fName, $lName, $dob, $enrollmentDate, $currentSchoolYear, $homePhone, $mobilePhone, $email, $contactName1, $contactPhone1, $contactName2, $contactPhone2, $key);
+            $stmt->execute();
+            $stmt->close();
+        } catch (PDOException $e) {
+            echo 'ERROR!';
+            print_r($e);
+        }
+    }
+
+    function addPhoto($key, $address)
+    {
+        $conn = new mysqli(self::SERVERNAME, self::USERNAME, self::PASSWORD, self::DBNAME);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $conn->query("UPDATE `student` SET `imgUrl`=\"" . $address . "\" WHERE P_Key = " .  (int) $key);
+    }
 }
