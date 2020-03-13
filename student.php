@@ -17,9 +17,12 @@
 
             <?php include 'db.php';
             $db = new db();
-            $student = $db->getStudent($_POST["key"]);
+            $student = $db->getStudent($_GET["key"]);
             if ($student->num_rows > 0) {
                 while ($row = $student->fetch_assoc()) {
+                    if ($row["imgUrl"] != null) {
+                        echo "<img src=\"" . $row["imgUrl"] . "\" alt=\"Student Image\">";
+                    }
                     echo "
                     <tr>
                         <td>First Name</td><td>" . $row["fName"] . "</td>
@@ -56,8 +59,15 @@
                 echo "No Students";
             }
             ?>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+                <input type="hidden" type="number" name="key" value="<?php echo $_GET["key"] ?>">
+            </form>
 
     </div>
+    <button onclick="window.location.href='summary.php'">View Summary</button>
 
     <script>
         function confirmDelete(pkey) {
