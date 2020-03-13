@@ -75,3 +75,10 @@ button {
 .right {
     float: right;
 }
+
+.bad {
+    box-shadow: 0 0 5px #ff0000;
+}
+.normal {
+    box-shadow: 000;
+}

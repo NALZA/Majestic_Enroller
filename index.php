@@ -38,15 +38,15 @@
                 </tr>
                 <tr>
                     <td><label>Home Phone: </label></td>
-                    <td> <input type="tel" id="hphone" name="hPhone" placeholder="0498765432" value="" required></td>
+                    <td> <input type="tel" id="hphone" name="hPhone" placeholder="0498765432" onblur=onblurNumber("hphone") value="" required></td>
                 </tr>
                 <tr>
                     <td><label>Mobile Phone: </label></td>
-                    <td> <input type="tel" id="mphone" name="mPhone" placeholder="0498765432" value="" required></td>
+                    <td> <input type="tel" id="mphone" name="mPhone" placeholder="0498765432" onblur=onblurNumber("mphone") value="" required></td>
                 </tr>
                 <tr>
                     <td><label>Email: </label></td>
-                    <td> <input type="email" id="email" name="email" value="" required></td>
+                    <td> <input type="email" id="email" name="email" onblur=onblurEmail("email") value="" required></td>
                 </tr>
                 <tr>
                     <td><label>1st Contact Name: </label></td>
@@ -54,14 +54,14 @@
                 </tr>
                 <tr>
                     <td><label>1st Contact Phone:</label></td>
-                    <td> <input type="tel" id="phone1" name="contactPhone1" placeholder="0498765432" value="" required></td>
+                    <td> <input type="tel" id="phone1" name="contactPhone1" onblur=onblurNumber("phone1") placeholder="0498765432" value="" required></td>
                 </tr>
                 <tr>
                     <td><label>2nd Contact Name: </label></td>
                     <td><input type="text" id="name2" name="contactName2" value="" required></td>
                 </tr>
                 <td><label>2nd Contact Phone: </label></td>
-                <td><input type="tel" id="phone2" name="contactPhone2" placeholder="0498765432" value="" required></td>
+                <td><input type="tel" id="phone2" name="contactPhone2" placeholder="0498765432" onblur=onblurNumber("phone2") value="" required></td>
                 </tr>
             </table>
             <?php if ($_POST) {
@@ -97,6 +97,22 @@
     }
     ?>
 </body>
+<script>
+    function onblurNumber(id) {
+        if (!document.getElementById(id).checkValidity()) {
+            document.getElementById(id).className = "bad";
+        } else {
+            document.getElementById(id).className = "normal";
+        }
+    }
 
+    function onblurEmail(id) {
+        if (!document.getElementById(id).checkValidity()) {
+            document.getElementById(id).className = "bad";
+        } else {
+            document.getElementById(id).className = "normal";
+        }
+    }
+</script>
 
 </html>
